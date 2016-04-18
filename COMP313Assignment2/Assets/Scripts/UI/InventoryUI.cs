@@ -25,5 +25,5 @@ public class InventoryUI : MonoBehaviour {
         Vector3 highlightLocation = new Vector3( initialLocation.x + /*inventorySlot*/ 5*slotSpacing, initialLocation.y, initialLocation.z);
         transform.TransformPoint(highlightLocation);
     }
-
+    //new vector3(transform.position.x-slotspacing, transform.position.y, transf orm.position.z)
 }

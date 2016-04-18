@@ -25,8 +25,8 @@ public class SillouPlace : MonoBehaviour {
 			if (Physics.Raycast(ray, out hit, 200))
 			{
 				fred = new Vector3 (hit.point.x, hit.point.y, hit.point.z);
-				Debug.Log ("count = " + count);
-				count++;
+				//Debug.Log ("count = " + count);
+				//count++;
 				sillou = (GameObject)Instantiate(block, fred, new Quaternion());
 			}
 		}
