@@ -13,7 +13,7 @@ public class PlayerManagement : MonoBehaviour {
 
     void Update()
     {
-        Debug.Log("Running");
+        //Debug.Log("Running");
         //PrintInventory();
     }
     

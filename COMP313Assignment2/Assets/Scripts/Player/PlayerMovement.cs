@@ -31,6 +31,7 @@ public class PlayerMovement : MonoBehaviour {
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
             //playerRigidBody.velocity.y += jumpVelocity;
+            playerRigidBody.velocity = new Vector3(0, jumpVelocity, 0);
             //Jump();
         }
         if (Input.GetKey("left shift"))
