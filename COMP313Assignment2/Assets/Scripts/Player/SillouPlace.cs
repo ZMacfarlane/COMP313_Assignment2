@@ -16,21 +16,20 @@ public class SillouPlace : MonoBehaviour {
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit;
 
-		if(Input.GetMouseButtonDown(1))
+        //if(Input.GetMouseButtonDown(1))
+        if (Input.GetKeyDown(KeyCode.Q))
 		{
 			
-			Vector3 fred;// = new Vector3 (hit.point);
-			//Instantiate(block, fred, 0);
+			Vector3 lookLoc;
 			if (Physics.Raycast(ray, out hit, 200))
 			{
-				fred = new Vector3 (hit.point.x, hit.point.y, hit.point.z);
-				//Debug.Log ("count = " + count);
-				//count++;
-				sillou = (GameObject)Instantiate(block, fred, new Quaternion());
+				lookLoc = new Vector3 (hit.point.x, hit.point.y + block.transform.localScale.y / 2, hit.point.z);
+				sillou = (GameObject)Instantiate(block, lookLoc, new Quaternion());
 			}
 		}
-		if(Input.GetMouseButtonUp(1))
-		{
+        //if(Input.GetMouseButtonUp(1))
+        if (Input.GetKeyUp(KeyCode.Q))
+        {
 			Destroy (sillou);
 		}
 			
