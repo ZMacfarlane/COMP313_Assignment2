@@ -7,12 +7,11 @@ public class SillouPlace : MonoBehaviour {
 
 	private int count;
 	GameObject sillou;
-	// Use this for initialization
+
 	void Start () {
 		count = 1;
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		RaycastHit hit;

@@ -3,26 +3,17 @@ using System.Collections;
 
 public class PlayerAction : MonoBehaviour {
 
-    //public GameObject selectedBuilding;
     public static int selectedItem = 0;
-
-    //Temp: Move to Manager later
-    //public int playerGold = 1000;
-    //public int buildingCost = 200;
 
     int item;
     float camRayLength = 7f;
-    
-    //Camera camera;
 
     void Awake()
     {
-        // camera = GetComponent<Camera>();
-        //playerManager = GetComponent<PlayerManagement>();
         item = LayerMask.GetMask("Pickupable");
     }
 
-    void FixedUpdate()
+    void Update()
     {
         selectedItem -=  (int)Input.mouseScrollDelta.y;
         if (selectedItem < 0)
@@ -33,19 +24,15 @@ public class PlayerAction : MonoBehaviour {
         {
             selectedItem = 0;
         }
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-
-
-            /*
-            if(buildingCost <= playerGold)
-            {
-                //Build equiped building
-                Instantiate(selectedBuilding, transform.position + (transform.forward * 2), transform.rotation);
-            }
-            */
-        }
+        if (Input.GetKeyDown(KeyCode.Alpha1)) selectedItem = 0;
+        if (Input.GetKeyDown(KeyCode.Alpha2)) selectedItem = 1;
+        if (Input.GetKeyDown(KeyCode.Alpha3)) selectedItem = 2;
+        if (Input.GetKeyDown(KeyCode.Alpha4)) selectedItem = 3;
+        if (Input.GetKeyDown(KeyCode.Alpha5)) selectedItem = 4;
+        if (Input.GetKeyDown(KeyCode.Alpha6)) selectedItem = 5;
+        if (Input.GetKeyDown(KeyCode.Alpha7)) selectedItem = 6;
+        if (Input.GetKeyDown(KeyCode.Alpha8)) selectedItem = 7;
+        if (Input.GetKeyDown(KeyCode.Alpha9)) selectedItem = 8;
 
         if (Input.GetKeyDown(KeyCode.F))
         {
@@ -64,15 +51,9 @@ public class PlayerAction : MonoBehaviour {
             //pickup item
             PlaceItem();
         }
-
-        /*
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            //open build menu
-        }
-        */
     }
 
+    //attempt to pick up item, and place it in first available slot
     void Pickup()
     {
         //if raycast hit object tagged pickupable, place item in inventory

@@ -1,29 +1,28 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class InventoryUI : MonoBehaviour {
 
-    public Vector3 initialLocation;
+    public float initX;
 
     int inventorySlot;
     int slotSpacing = 45;
-    
+    Image highlightImage;
 
-    // Use this for initialization
     void Awake () {
         inventorySlot = 0;
-	}
+        highlightImage = GetComponent<Image>();
+    }
 	
-	// Update is called once per frame
 	void Update () {
-        //inventorySlot = PlayerAction.selectedItem;
+        inventorySlot = PlayerAction.selectedItem;
         HighlightSelection();
 	}
 
     void HighlightSelection()
     {
-        Vector3 highlightLocation = new Vector3( initialLocation.x + /*inventorySlot*/ 5*slotSpacing, initialLocation.y, initialLocation.z);
-        transform.TransformPoint(highlightLocation);
+        highlightImage.rectTransform.position = new Vector3(initX + (inventorySlot+1) * slotSpacing, transform.position.y, transform.position.z);
     }
-    //new vector3(transform.position.x-slotspacing, transform.position.y, transf orm.position.z)
+
 }

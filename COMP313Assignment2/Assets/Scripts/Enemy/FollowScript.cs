@@ -7,14 +7,12 @@ public class FollowScript : MonoBehaviour {
     NavMeshAgent nav;
     Animator anim;
 
-	// Use this for initialization
 	void Awake () {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         nav = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
     }
 	
-	// Update is called once per frame
 	void Update () {
         nav.SetDestination(player.position);
         Animating();

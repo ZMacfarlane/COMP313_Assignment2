@@ -16,7 +16,6 @@ public class PlayerMovement : MonoBehaviour {
 
     void Awake()
     {
-        Cursor.visible = false; //MOVE THIS TO APPROPRIATE SCRIPT
         playerRigidBody = GetComponent<Rigidbody>();
         playerRigidBody.AddForce(Physics.gravity * gravity);
         anim = GetComponent<Animator>();
@@ -28,12 +27,7 @@ public class PlayerMovement : MonoBehaviour {
     {
         float forward = Input.GetAxisRaw("Vertical");
         float strafe = Input.GetAxisRaw("Horizontal");
-        if (Input.GetButtonDown("Jump") && IsGrounded())
-        {
-            //playerRigidBody.velocity.y += jumpVelocity;
-            playerRigidBody.velocity = new Vector3(0, jumpVelocity, 0);
-            //Jump();
-        }
+
         if (Input.GetKey("left shift"))
         {
             speed = sprintSpeed;
@@ -42,42 +36,42 @@ public class PlayerMovement : MonoBehaviour {
         {
             speed = defaultSpeed;
         }
-        /*
-        if (Input.GetKeyUp("left shift"))
-        {
-            speed = defaultSpeed;
-        }
-        */
+
         Move(forward, strafe);
         Animating(forward, strafe);
         
     }
 
+    void Update()
+    {
+        if (Input.GetButtonDown("Jump") && IsGrounded())
+        {
+            playerRigidBody.velocity = new Vector3(0, jumpVelocity, 0);
+        }
+    }
+
+    //control player movement
     void Move(float forward, float right)
     {
-        //movement.Set(right, 0f, forward);
-
         movement = (transform.forward * forward) + (transform.right * right);
         movement = movement.normalized * speed * Time.deltaTime;
         playerRigidBody.MovePosition(transform.position + movement);
     }
 
+    //player carry out jump action
     void Jump()
     {
-        //if (playerRigidBody.velocity.y <= 0.1 && playerRigidBody.velocity.y >= -0.1)
-        
-        //{
-            playerRigidBody.velocity = new Vector3(0, jumpVelocity, 0);
-        //}
-        
+            playerRigidBody.velocity = new Vector3(0, jumpVelocity, 0);  
     }
 
+    //Sets animation controller states
     void Animating(float f, float s)
     {
         bool walking = f != 0f || s != 0f;
         anim.SetBool("IsWalking", walking);
     }
 
+    //Checks that player is on the ground (within error)
     bool IsGrounded()
     {
         return Physics.Raycast(transform.position, -Vector3.up, distanceToGround + 0.4f);
