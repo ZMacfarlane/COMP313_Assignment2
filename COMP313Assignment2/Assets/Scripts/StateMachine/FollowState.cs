@@ -17,7 +17,11 @@ public class FollowState : EnemyState {
 
     public void OnTriggerEnter(Collider other)
     {
-
+        if (other.gameObject.CompareTag("Goal"))
+        {
+            Debug.Log("Goal");
+            ToIdleState();
+        }
     }
 
     public void OnTriggerExit(Collider other)
@@ -45,7 +49,7 @@ public class FollowState : EnemyState {
 
     public void ToIdleState()
     {
-
+        enemy.currentState = enemy.idleState;
     }
 
     void Follow()

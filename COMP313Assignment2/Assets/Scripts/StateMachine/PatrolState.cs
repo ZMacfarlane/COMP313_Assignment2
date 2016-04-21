@@ -13,6 +13,7 @@ public class PatrolState : EnemyState {
 
     public void UpdateState()
     {
+        enemy.anim.SetBool("IsWalking", true);
         Patrol();
     }
 

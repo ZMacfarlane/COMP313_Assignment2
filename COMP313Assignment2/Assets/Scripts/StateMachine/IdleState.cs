@@ -12,12 +12,13 @@ public class IdleState : EnemyState {
 
     public void UpdateState()
     {
-        
+        enemy.anim.SetBool("IsWalking", false);
+        Idle();
     }
 
     public void OnTriggerEnter(Collider other)
     {
-
+        
     }
 
     public void OnTriggerExit(Collider other)
@@ -41,6 +42,11 @@ public class IdleState : EnemyState {
     }
 
     public void ToIdleState()
+    {
+
+    }
+
+    void Idle()
     {
 
     }

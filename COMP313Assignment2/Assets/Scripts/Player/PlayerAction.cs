@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerAction : MonoBehaviour {
 
     public static int selectedItem = 0;
+    public static GameObject[] inventory;
 
     int item;
     float camRayLength = 7f;
@@ -11,6 +12,7 @@ public class PlayerAction : MonoBehaviour {
     void Awake()
     {
         item = LayerMask.GetMask("Pickupable");
+        inventory = new GameObject[9];
     }
 
     void Update()
@@ -41,14 +43,12 @@ public class PlayerAction : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(1))
         {
-            //pickup item
             Pickup();
         }
 
-        //if (Input.GetMouseButtonDown(0))
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetMouseButtonDown(0))
+        //if (Input.GetKeyDown(KeyCode.E))
         {
-            //pickup item
             PlaceItem();
         }
     }
@@ -65,8 +65,7 @@ public class PlayerAction : MonoBehaviour {
             if (i >= 0)
             {
                 GameObject select = hit.transform.gameObject;
-                PlayerManagement.inventory[i] = Instantiate<GameObject>(select);
-                //Destroy(hit.transform.gameObject);
+                inventory[i] = Instantiate<GameObject>(select);
                 Destroy(select);
             }
             
@@ -75,9 +74,9 @@ public class PlayerAction : MonoBehaviour {
     
     public int InventoryAvailable()
     {
-        for (int i = 0; i < PlayerManagement.inventory.Length; i++)
+        for (int i = 0; i < inventory.Length; i++)
         {
-            if (PlayerManagement.inventory[i] == null)
+            if (inventory[i] == null)
             {
                 return i;
             }
@@ -88,10 +87,10 @@ public class PlayerAction : MonoBehaviour {
 
     void PlaceItem()
     {
-        if (PlayerManagement.inventory[selectedItem] != null)
+        if (inventory[selectedItem] != null)
         {
-            Instantiate(PlayerManagement.inventory[selectedItem], transform.position + (transform.forward * 2), transform.rotation);
-            PlayerManagement.inventory[selectedItem] = null;
+            Instantiate(inventory[selectedItem], transform.position + (transform.forward * 2), transform.rotation);
+            inventory[selectedItem] = null;
         }
     }
     
