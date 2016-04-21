@@ -4,14 +4,16 @@ using System.Collections;
 
 public class InventoryUI : MonoBehaviour {
 
-    public float initX;
+    //public float initX; 222
 
     int inventorySlot;
     int slotSpacing = 45;
     Image highlightImage;
+	float initX;
 
     void Awake () {
         inventorySlot = 0;
+		initX = (Screen.width / 2) - 225;
         highlightImage = GetComponent<Image>();
     }
 	

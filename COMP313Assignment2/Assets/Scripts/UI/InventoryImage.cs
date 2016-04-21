@@ -17,13 +17,11 @@ public class InventoryImage : MonoBehaviour {
 	void LateUpdate () {
         if (PlayerAction.inventory[inventorySlot] == null)// && PlayerAction.inventory[inventorySlot].CompareTag("Domino"))
         {
-            Debug.Log("replace with empty");
             GetComponent<Image>().sprite = empty;
             //GetComponent<Image>().sprite = domino;
         }
         else if (PlayerAction.inventory[inventorySlot].CompareTag("Domino"))
         {
-            Debug.Log("replace with domino");
             //GetComponent<Image>().sprite = empty;
             GetComponent<Image>().sprite = domino;
         }
