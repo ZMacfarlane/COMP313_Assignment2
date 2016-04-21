@@ -19,7 +19,6 @@ public class FollowState : EnemyState {
     {
         if (other.gameObject.CompareTag("Goal"))
         {
-            Debug.Log("Goal");
             ToIdleState();
         }
     }
